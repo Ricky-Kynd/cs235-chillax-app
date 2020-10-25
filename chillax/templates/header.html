@@ -1,0 +1,278 @@
+<div class="ui inverted vertical masthead center aligned segment">
+	<div class="ui container">
+		<div class="ui large secondary inverted pointing menu">
+			<a class="toc item">
+				<i class="sidebar icon"></i>
+			</a>
+			<div class="header left item">
+				<img style="width: 6.5em;" class="logo" src="{{ url_for('static', filename='Chillax@2x.png') }}" alt="Logo">
+			</div>
+			<a class="item" href="{{ url_for('home_bp.home') }}">Home</a>
+			<a class="item" href="{{ url_for('news_bp.articles_by_date') }}">New Releases</a>
+			<a class="item item-menu">Browse</a>
+			<a class="item">Watchlist</a>
+			<div class="ui category search item">
+				<div class="ui icon input">
+					<input class="prompt inverted" type="text" placeholder="Search">
+					<i class="search link icon"></i>
+				</div>
+				<div class="results"></div>
+			</div>
+			<div class="right item">
+				<a class="ui inverted button" href="{{ url_for('authentication_bp.login') }}">Log in</a>
+				<a class="ui inverted button" href="{{ url_for('authentication_bp.register') }}">Sign Up</a>
+				<a class="ui inverted button" href="{{ url_for('authentication_bp.logout') }}">Sign out</a>
+			</div>
+		</div>
+	</div>
+
+{#	<div id="hero">#}
+{#		{% for article in selected_articles %}#}
+{#			<div class="blurring dimmable image">#}
+{#				<div class="ui dimmer">#}
+{#					<div class="content">#}
+{#						<div class="center">#}
+{#							<a href="{{ article.hyperlink }}">#}
+{#								<div class="ui text">{{ article.title }}</div>#}
+{#								<div class="huge circular ui icon button">#}
+{#									<i class="play icon"></i>#}
+{#								</div>#}
+{#							</a>#}
+{#						</div>#}
+{#					</div>#}
+{#				</div>#}
+{#				<img src={{ article.image_hyperlink }}/>#}
+{#			</div>#}
+{#		{% endfor %}#}
+{#	</div>#}
+
+
+</div>
+
+
+{#------------	INCLUDED SIDEBAR HERE ----------#}
+{% include 'sidebar.html' %}
+
+<style type="text/css">
+
+	.ui.secondary.pointing.menu .item {
+		margin: 0px;
+	}
+
+	{# CUSTOM CSS#}
+	#hero {
+	   width: 100%;
+	}
+
+	#hero img {
+	   width: 100%;
+	}
+
+	{# MOBILE NAVIGATION BAR #}
+	.hidden.menu {
+		display: none;
+	}
+
+	.masthead.segment {
+		{#min-height: 1000px;#}
+		padding: 1em 0em;
+	}
+
+	.masthead .logo.item img {
+		margin-right: 1em;
+	}
+
+	.masthead .ui.menu .ui.button {
+		margin-left: 0.5em;
+	}
+
+	.masthead h1.ui.header {
+		margin-top: 3em;
+		margin-bottom: 0em;
+		font-size: 4em;
+		font-weight: normal;
+	}
+
+	.masthead h2 {
+		font-size: 1.7em;
+		font-weight: normal;
+	}
+
+	.ui.vertical.stripe {
+		padding: 8em 0em;
+	}
+
+	.ui.vertical.stripe h3 {
+		font-size: 2em;
+	}
+
+	.ui.vertical.stripe .button + h3,
+	.ui.vertical.stripe p + h3 {
+		margin-top: 3em;
+	}
+
+	.ui.vertical.stripe .floated.image {
+		clear: both;
+	}
+
+	.ui.vertical.stripe p {
+		font-size: 1.33em;
+	}
+
+	.ui.vertical.stripe .horizontal.divider {
+		{#margin: 3em 0em;#}
+	}
+
+	.quote.stripe.segment {
+		padding: 0em;
+	}
+
+	.quote.stripe.segment .grid .column {
+		padding-top: 5em;
+		padding-bottom: 5em;
+	}
+
+	.footer.segment {
+		padding: 5em 0em;
+	}
+
+	.secondary.pointing.menu .toc.item {
+		display: none;
+	}
+
+	@media only screen and (max-width: 700px) {
+		.ui.fixed.menu {
+			display: none !important;
+		}
+
+		.secondary.pointing.menu .item,
+		.secondary.pointing.menu .menu {
+			display: none;
+		}
+
+		.secondary.pointing.menu .toc.item {
+			display: block;
+		}
+
+		.masthead.segment {
+			min-height: 350px;
+		}
+
+		.masthead h1.ui.header {
+			font-size: 2em;
+			margin-top: 1.5em;
+		}
+
+		.masthead h2 {
+			margin-top: 0.5em;
+			font-size: 1.5em;
+		}
+	}
+
+
+
+
+</style>
+
+{#<div class="ui medium inverted top fixed menu transition" style="display: flex !important;">#}
+{#	<a class="item item-menu">#}
+{#		<i class="sidebar icon"></i> All Genres#}
+{#	</a>#}
+{#	<div class="ui container">#}
+{#		<a class="active item">Home</a>#}
+{##}
+{#		<a class="item">New Releases</a>#}
+{#		<a class="item">Community</a>#}
+{#		<a class="item">Watchlist</a>#}
+{##}
+{#		<div class="right menu">#}
+{#			<div class="ui category search item">#}
+{#				<div class="ui  icon input">#}
+{#					<input class="prompt" type="text" placeholder="Search">#}
+{#					<i class="search link icon"></i>#}
+{#				</div>#}
+{#				<div class="results"></div>#}
+{#			</div>#}
+{#			<div class="item">#}
+{#				<a class="ui secondary button" href="{{ url_for('authentication_bp.login') }}">Sign in</a>#}
+{#			</div>#}
+{#			<div class="item">#}
+{#				<a class="ui primary button" href="{{ url_for('authentication_bp.register') }}">Sign up</a>#}
+{#			</div>#}
+{#			<div id="ui text">#}
+{#    			{% if 'username' in session %} Hello, {{ session['username'] }}#}
+{#				{% endif %}#}
+{#  		</div>#}
+{#		</div>#}
+{#	</div>#}
+{#</div>#}
+
+<script>
+    (function () {
+
+        var img = document.getElementById('hero').firstChild;
+        img.onload = function () {
+            if (img.height > img.width) {
+                img.height = '100%';
+                img.width = 'auto';
+            }
+        };
+
+    }());
+    $(document)
+        .ready(function () {
+
+            // fix menu when passed
+            $('.masthead')
+                .visibility({
+                    once: false,
+                    onBottomPassed: function () {
+                        $('.fixed.menu').transition('fade in');
+                    },
+                    onBottomPassedReverse: function () {
+                        $('.fixed.menu').transition('fade out');
+                    }
+                })
+            ;
+
+            // create sidebar and attach to menu open
+            $('.ui.sidebar')
+                .sidebar('attach events', '.toc.item')
+            ;
+
+        })
+    ;
+</script>
+{#<script>#}
+{#var categoryContent = [#}
+{#  { category: 'Action', title: 'Bolivia', url: 'www.google.com'},#}
+{#  { category: 'Adventure', title: 'Peru', url: 'www.google.com' },#}
+{#  { category: 'Sci-fi', title: 'Canada', url: 'www.google.com' },#}
+{#  { category: 'Mystery', title: 'South Korea', url: 'www.google.com' },#}
+{#  { category: 'Horror', title: 'Japan', url: 'www.google.com' },#}
+{#  { category: 'Thriller', title: 'China', url: 'www.google.com' },#}
+{#  { category: 'Animation', title: 'Denmark', url: 'www.google.com' },#}
+{#  { category: 'Comedy', title: 'England', url: 'www.google.com' },#}
+{#  { category: 'Family', title: 'France', url: 'www.google.com' },#}
+{#  { category: 'Fantasy', title: 'Germany', url: 'www.google.com' },#}
+{#  { category: 'Drama', title: 'Ethiopia', url: 'www.google.com' },#}
+{#  { category: 'Music', title: 'Nigeria', url: 'www.google.com' },#}
+{#  { category: 'Biography', title: 'Zimbabwe', url: 'www.google.com' },#}
+{#  { category: 'Romance', title: 'Zimbabwe', url: 'www.google.com' },#}
+{#  { category: 'History', title: 'Zimbabwe', url: 'www.google.com' },#}
+{#  { category: 'Crime', title: 'Zimbabwe', url: 'www.google.com' },#}
+{#  { category: 'Western', title: 'Zimbabwe', url: 'www.google.com' },#}
+{#  { category: 'War', title: 'Zimbabwe', url: 'www.google.com' },#}
+{#  { category: 'Musical', title: 'Zimbabwe', url: 'www.google.com' },#}
+{#  { category: 'Sport', title: 'Zimbabwe', url: 'www.google.com' },#}
+{#];#}
+{#$('.ui.search').search({#}
+{#	type: 'category',#}
+{#	source: categoryContent,#}
+{#	searchFields   : [#}
+{#  		'title',#}
+{#		'url'#}
+{#	],#}
+{#fullTextSearch: false,#}
+{#	minCharacters : 1;#}
+{#</script>#}

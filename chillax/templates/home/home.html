@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+
+		{% include 'navigation.html'  %}
+
+		<div class="ui vertical center aligned segment">
+			<h1>All Genres</h1>
+			<div style="padding-left: 20px; padding-right: 20px;" class="ui five cards">
+				{% for key in tag_urls %}
+					<div class="ui raised linked card">
+						<a style="padding: 20px 0 20px 0; background-color: #292929; color: white;" class="item" href="{{ tag_urls[key] }}">{{ key }}</a>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+
+
+{% endblock %}

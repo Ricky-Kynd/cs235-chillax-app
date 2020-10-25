@@ -1,0 +1,70 @@
+{##}
+{#  <div>#}
+{#    <h3>#}
+{#      <a class="btn-nav" href="{{ url_for('news_bp.articles_by_date') }}">#}
+{#        Browse timeline#}
+{#      </a>#}
+{#    </h3>#}
+{#  </div>#}
+{#</nav>#}
+
+<!-- Navigation links (hidden by default) -->
+<div class="ui inverted sidebar vertical menu">
+	<div class="ui container">
+
+		<a style="padding: 0;" class="item" href="{{ url_for('home_bp.home') }}">
+			<img style="" class="ui small circular centered image" src="{{ url_for('static', filename='kristy.png') }}"/>
+		</a>
+		<p>
+			{% if 'username' in session %} Hola!, {{ session['username'] }} {% endif %}
+		</p>
+		<div class="mobile_menu">
+			<a class="active item">Home</a>
+			<a class="item">New Releases</a>
+			<a class="item item-menu">Browse</a>
+			<a class="item">Watchlist</a>
+		</div>
+		<div>
+			<br>
+			{% for key in tag_urls %}
+				<a class="item" href="{{ tag_urls[key] }}">{{ key }}</a>
+			{% endfor %}
+		</div>
+
+		<div style="padding-top: 20px">
+			<p>Chillax Inc</p>
+		</div>
+	</div>
+</div>
+
+<style>
+	.mobile_menu {
+		display: none;
+	}
+
+	@media only screen and (max-width: 700px) {
+		.mobile_menu {
+			display: block;
+		}
+	}
+</style>
+
+<script>
+
+    $('.masthead .image').dimmer({
+        on: 'hover'
+    });
+
+    $('.ui.sidebar').sidebar({
+        dimPage: true,
+        transition: 'push',
+        duration: 1000,
+        closable: true
+    });
+
+    $('.ui.sidebar').sidebar('attach events', '.item-menu');
+
+</script>
+{#	<a class="item" href="{{ url_for('home_bp.home') }}">Home</a>#}
+{#	<a class="item" href="{{ url_for('authentication_bp.register') }}">Sign up</a>#}
+{#	<a class="item" href="{{ url_for('authentication_bp.login') }}">Sign in</a>#}

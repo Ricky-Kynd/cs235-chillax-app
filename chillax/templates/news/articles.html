@@ -1,0 +1,131 @@
+{% extends 'layout.html' %}
+
+{% block articles %}
+
+<div class="ui vertical segment">
+
+	<div id="header" class="ui center aligned container">
+		<div style="margin-top: 40px;" class="ui center aligned text">
+			<h1>{{ articles_title }}</h1>
+		</div>
+	</div>
+
+	<div id="pagination"	>
+		<div style="clear:both">
+			<div style="float:right">
+				{% if first_article_url is not none %}
+					<button class="ui button" onclick="location.href='{{ first_article_url }}'"><i
+						class="right arrow icon"></i>
+						Next
+					</button>
+				{% else %}
+					<button class="ui disabled button" disabled><i class="right arrow icon"></i>
+						Next
+					</button>
+				{% endif %}
+				{% if prev_article_url is not none %}
+					<button class="ui button" onclick="location.href='{{ prev_article_url }}'"><i
+						class="left arrow icon"></i>
+						Previous
+					</button>
+				{% else %}
+					<button class="ui disabled button" disabled><i class="left arrow icon"></i>
+						Previous
+					</button>
+				{% endif %}
+			</div>
+			<div style="float:left">
+				{% if next_article_url is not none %}
+					<button class="ui button" onclick="location.href='{{ next_article_url }}'"><i
+						class="left arrow icon"></i>
+						Previous
+					</button>
+				{% else %}
+					<button class="ui disable button" disabled><i class="right arrow icon"></i>
+						Next
+					</button>
+				{% endif %}
+				{% if last_article_url is not none %}
+					<button class="ui button" onclick="location.href='{{ last_article_url }}'"><i
+						class="left arrow icon"></i>
+						Last
+					</button>
+				{% else %}
+					<button class="ui disabled button" disabled><i class="left arrow icon"></i>
+						Last
+					</button>
+				{% endif %}
+			</div>
+		</div>
+
+	</div>
+
+	<div id="display_movies" class="ui cards">
+
+		{% for article in articles %}
+
+			<div class="ui card">
+
+				<a class="image" href="{{ article.hyperlink }}">
+					<img src={{ article.image_hyperlink }}>
+				</a>
+				<div style="flex-grow: 0;" class="content">
+					<div class="right floated meta">{{ article.date }}</div>
+					<img class="ui avatar image"
+						 src={{ article.image_hyperlink }}><span>{{ article.title }}</span>
+				</div>
+
+				<div class="content">{{ article.first_para }}</div>
+
+				<div class="extra content">
+					<span class="ui icon">
+					  		<i class="large filled heart outline icon"></i>
+					</span>
+					<span class="ui centered text">Like</span>
+					<span class="ui right floated">
+						  <i class="plus icon"></i>
+					</span>
+					<input style="border: 1px solid lightgray;" type="text" placeholder="Add Comment...">
+
+				</div>
+
+			</div> {#---> End for #}
+		{% endfor %}
+
+{#------------------------------------------------------------------#}
+{#	THIS SECTION IS A PAGE SELECTOR IN THE FOOTER SECTION WHEN USER SCROLLS DOWN #}
+
+		<div style="margin-top: 80px; margin-bottom: 80px;" class="ui center aligned container">
+			<h1> Page Navigation </h1>
+			<nav>
+				<div style="float:left">
+					{% if first_article_url is not none %}
+						<button class="ui black button" onclick="location.href='{{first_article_url}}'">First</button>
+					{% else %}
+						<button class="ui disabled button" disabled>First</button>
+					{% endif %}
+					{% if prev_article_url is not none %}
+						<button class="ui black button" onclick="location.href='{{prev_article_url}}'">Previous</button>
+					{% else %}
+						<button class="ui disable button" disabled>Previous</button>
+					{% endif %}
+				</div>
+				<div style="float:right">
+					{% if next_article_url is not none %}
+						<button class="ui black button" onclick="location.href='{{next_article_url}}'">Next</button>
+					{% else %}
+						<button class="ui disabled button" disabled>Next</button>
+					{% endif %}
+					{% if last_article_url is not none %}
+						<button class="ui black button" onclick="location.href='{{last_article_url}}'">Last</button>
+					{% else %}
+						<button class="ui disabled button" disabled>Last</button>
+					{% endif %}
+				</div>
+			</nav>
+		</div>
+
+	</div>
+</div> {#---> First div closing tag #}
+
+{% endblock %}

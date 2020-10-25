@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+	<title>Chillax</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+	<link rel="bookmark" type="image/x-icon" href="{{ url_for('static', filename='favicon.png') }}"/>
+	<link rel="icon" href="{{ url_for('static', filename='favicon.png') }}"/>
+
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+	<script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+
+</head>
+
+<body>
+
+	<!-- Site content !-->
+	<div class="pusher">
+
+		{% include 'header.html' %}
+
+		{% block main %} {% endblock %}
+
+		{% block articles %} {% endblock %}
+
+		{% block auth %} {% endblock %}
+
+		{% include 'footer.html' %}
+
+	</div>
+
+
+</body>
+</html>
