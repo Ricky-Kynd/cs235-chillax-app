@@ -2,7 +2,8 @@
 
 ## Description
 
-This is a simple Movie application that uses 
+This is a simple Movie application that utilizes stuff.
+Please have internet to load CSS and Javascript frameworks!
 
 ## Installation
 
@@ -43,9 +44,7 @@ The *chillax/.env* file contains variable settings. They are set with appropriat
 
 Testing requires that file *chillax/tests/conftest.py* be edited to set the value of `TEST_DATA_PATH`. You should set this to the absolute path of the *chillax/tests/data* directory. 
 
-E.g. 
-
-`TEST_DATA_PATH = os.path.join('C:', os.sep, 'Users', 'ian', 'Documents', 'Python dev', 'COVID-19', 'tests', 'data')`
+E.g. `TEST_DATA_PATH = os.path.join('C:', os.sep, 'Users', 'ian', 'Documents', 'Python dev', 'COVID-19', 'tests', 'data')`
 
 assigns TEST_DATA_PATH with the following value (the use of os.path.join and os.sep ensures use of the correct platform path separator):
 
