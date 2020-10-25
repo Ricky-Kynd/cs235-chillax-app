@@ -156,7 +156,6 @@ class MemoryRepository(AbstractRepository):
 def read_csv_file(filename: str):
     with open(filename, encoding='utf-8-sig') as infile:
         reader = csv.reader(infile)
-
         # Read first line of the the CSV file.
         headers = next(reader)
 
@@ -186,7 +185,7 @@ def load_articles_and_tags(data_path: str, repo: MemoryRepository):
             date=date.fromisoformat(data_row[6]+"-02-28"),
             title=data_row[1],
             first_para=data_row[3],
-            hyperlink="{}{}{}".format("https://image.tmdb.org/t/p/", "w400/", data_row[13]),
+            hyperlink="{}{}{}".format("https://image.tmdb.org/t/p/", "w400", data_row[13]),
             image_hyperlink="{}{}{}".format("https://image.tmdb.org/t/p/", "w400", data_row[13])
         )
 

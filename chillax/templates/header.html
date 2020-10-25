@@ -18,6 +18,7 @@
 				</div>
 				<div class="results"></div>
 			</div>
+			<p>{% if 'username' in session %} Hola!, {{ session['username'] }} {% endif %}</p>
 			<div class="right item">
 				<a class="ui inverted button" href="{{ url_for('authentication_bp.login') }}">Log in</a>
 				<a class="ui inverted button" href="{{ url_for('authentication_bp.register') }}">Sign Up</a>

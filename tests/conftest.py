@@ -5,10 +5,9 @@ from chillax import create_app
 from chillax.adapters import memory_repository
 from chillax.adapters.memory_repository import MemoryRepository
 
-
-# TEST_DATA_PATH = os.path.join('C:', os.sep, 'Users', 'ianwo', 'OneDrive', 'Documents', 'PythonDev', 'repo 02.07.2020',
-#                               'COVID-19', 'tests', 'data')
-TEST_DATA_PATH = os.path.join('Users', 'rickys.k', 'Google Drive', 'UNIVERSITY', 'MY COURSES', 'CS 235 - METHODOLOGIES/ASSIGNMENTS', 'A2-Final', 'chillax-app', 'tests', 'data')
+# TEST_DATA_PATH = os.path.join(os.sep, 'Users', 'rickys.k', 'Google Drive', 'UNIVERSITY', 'MY COURSES',
+#                               'CS235 - METHODOLOGIES/ASSIGNMENTS', 'A2-Final', 'chillax-app')
+TEST_DATA_PATH = r'/Users/rickys.k/Google Drive/UNIVERSITY/MY COURSES/CS 235 - METHODOLOGIES/ASSIGNMENTS/A2-Final/chillax-app/tests/data'
 
 
 @pytest.fixture
@@ -21,9 +20,9 @@ def in_memory_repo():
 @pytest.fixture
 def client():
     my_app = create_app({
-        'TESTING': True,                                # Set to True during testing.
-        'TEST_DATA_PATH': TEST_DATA_PATH,               # Path for loading test data into the repository.
-        'WTF_CSRF_ENABLED': False                       # test_client will not send a CSRF token, so disable validation.
+        'TESTING': True,  # Set to True during testing.
+        'TEST_DATA_PATH': TEST_DATA_PATH,  # Path for loading test data into the repository.
+        'WTF_CSRF_ENABLED': False  # test_client will not send a CSRF token, so disable validation.
     })
 
     return my_app.test_client()

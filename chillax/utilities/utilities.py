@@ -24,11 +24,3 @@ def get_selected_articles(quantity=25):
     for article in articles:
         article['hyperlink'] = url_for('news_bp.articles_by_date', date=article['date'].isoformat())
     return articles
-
-
-def get_hero_article(quantity=1):
-    articles = services.get_random_articles(quantity, repo.repo_instance)
-
-    for article in articles:
-        article['hyperlink'] = url_for('news_bp.articles_by_date', date=article['date'].isoformat())
-    return articles

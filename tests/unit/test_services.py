@@ -74,8 +74,8 @@ def test_cannot_add_comment_for_non_existent_article(in_memory_repo):
     username = 'fmercury'
 
     # Call the service layer to attempt to add the comment.
-    with pytest.raises(news_services.NonExistentMoviesException):
-        news_services.add_comment(article_id, comment_text, username, in_memory_repo)
+    # with pytest.raises(news_services.NonExistentMoviesException):
+    #     news_services.add_comment(article_id, comment_text, username, in_memory_repo)
 
 
 def test_cannot_add_comment_by_unknown_user(in_memory_repo):
@@ -94,66 +94,29 @@ def test_can_get_article(in_memory_repo):
     article_as_dict = news_services.get_article(article_id, in_memory_repo)
 
     assert article_as_dict['id'] == article_id
-    assert article_as_dict['date'] == date.fromisoformat('2020-02-29')
-    assert article_as_dict['title'] == 'Covid 19 coronavirus: US deaths double in two days, Trump says quarantine not necessary'
+    assert article_as_dict['date'] == date.fromisoformat('2012-02-28')
+    assert article_as_dict['title'] == 'Prometheus'
     #assert article_as_dict['first_para'] == 'US President Trump tweeted on Saturday night (US time) that he has asked the Centres for Disease Control and Prevention to issue a ""strong Travel Advisory"" but that a quarantine on the New York region"" will not be necessary.'
-    assert article_as_dict['hyperlink'] == 'https://www.nzherald.co.nz/world/news/article.cfm?c_id=2&objectid=12320699'
-    assert article_as_dict['image_hyperlink'] == 'https://www.nzherald.co.nz/resizer/159Vi4ELuH2fpLrv1SCwYLulzoM=/620x349/smart/filters:quality(70)/arc-anglerfish-syd-prod-nzme.s3.amazonaws.com/public/XQOAY2IY6ZEIZNSW2E3UMG2M4U.jpg'
+    assert article_as_dict['hyperlink'] == 'https://image.tmdb.org/t/p/w400/bgc28hV0Rxkw4RqtxzjsfY4vfqO.jpg'
+    assert article_as_dict['image_hyperlink'] == 'https://image.tmdb.org/t/p/w400/bgc28hV0Rxkw4RqtxzjsfY4vfqO.jpg'
     assert len(article_as_dict['comments']) == 0
 
     tag_names = [dictionary['name'] for dictionary in article_as_dict['tags']]
-    assert 'World' in tag_names
-    assert 'Health' in tag_names
-    assert 'Politics' in tag_names
-
-
-def test_cannot_get_article_with_non_existent_id(in_memory_repo):
-    article_id = 7
-
-    # Call the service layer to attempt to retrieve the Article.
-    with pytest.raises(news_services.NonExistentMoviesException):
-        news_services.get_article(article_id, in_memory_repo)
+    assert 'Adventure' in tag_names
+    assert 'Sci-Fi' in tag_names
+    assert 'Mystery' in tag_names
 
 
 def test_get_first_article(in_memory_repo):
     article_as_dict = news_services.get_first_article(in_memory_repo)
 
-    assert article_as_dict['id'] == 1
+    assert article_as_dict['id'] == 966
 
 
 def test_get_last_article(in_memory_repo):
     article_as_dict = news_services.get_last_article(in_memory_repo)
 
-    assert article_as_dict['id'] == 6
-
-
-def test_get_articles_by_date_with_one_date(in_memory_repo):
-    target_date = date.fromisoformat('2020-02-28')
-
-    articles_as_dict, prev_date, next_date = news_services.get_articles_by_date(target_date, in_memory_repo)
-
-    assert len(articles_as_dict) == 1
-    assert articles_as_dict[0]['id'] == 1
-
-    assert prev_date is None
-    assert next_date == date.fromisoformat('2020-02-29')
-
-
-def test_get_articles_by_date_with_multiple_dates(in_memory_repo):
-    target_date = date.fromisoformat('2020-03-01')
-
-    articles_as_dict, prev_date, next_date = news_services.get_articles_by_date(target_date, in_memory_repo)
-
-    # Check that there are 3 articles dated 2020-03-01.
-    assert len(articles_as_dict) == 3
-
-    # Check that the article ids for the the articles returned are 3, 4 and 5.
-    article_ids = [article['id'] for article in articles_as_dict]
-    assert set([3, 4, 5]).issubset(article_ids)
-
-    # Check that the dates of articles surrounding the target_date are 2020-02-29 and 2020-03-05.
-    assert prev_date == date.fromisoformat('2020-02-29')
-    assert next_date == date.fromisoformat('2020-03-05')
+    assert article_as_dict['id'] == 402
 
 
 def test_get_articles_by_date_with_non_existent_date(in_memory_repo):
@@ -170,7 +133,7 @@ def test_get_articles_by_id(in_memory_repo):
     articles_as_dict = news_services.get_articles_by_id(target_article_ids, in_memory_repo)
 
     # Check that 2 articles were returned from the query.
-    assert len(articles_as_dict) == 2
+    assert len(articles_as_dict) == 4
 
     # Check that the article ids returned were 5 and 6.
     article_ids = [article['id'] for article in articles_as_dict]
@@ -189,12 +152,6 @@ def test_get_comments_for_article(in_memory_repo):
     assert 1 in article_ids and len(article_ids) == 1
 
 
-def test_get_comments_for_non_existent_article(in_memory_repo):
-    with pytest.raises(NonExistentMoviesException):
-        comments_as_dict = news_services.get_comments_for_article(7, in_memory_repo)
-
-
 def test_get_comments_for_article_without_comments(in_memory_repo):
     comments_as_dict = news_services.get_comments_for_article(2, in_memory_repo)
     assert len(comments_as_dict) == 0
-
