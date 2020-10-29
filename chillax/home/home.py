@@ -1,7 +1,6 @@
 from flask import Blueprint, render_template
 
 import chillax.utilities.utilities as utilities
-import chillax.news.services as news_utilities
 
 
 home_blueprint = Blueprint('home_bp', __name__)
