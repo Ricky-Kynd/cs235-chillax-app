@@ -40,7 +40,9 @@ The *chillax/.env* file contains variable settings. They are set with appropriat
 * `WTF_CSRF_SECRET_KEY`: Secret key used by the WTForm library.
 
 
-## Testing
+## Testing 
+
+IMPORTANT UPDATE: Tests do not work when running via 'pytest' command. Please right click on each of the test files in order to run tests. Thanks.
 
 Testing requires that file *chillax/tests/conftest.py* be edited to set the value of `TEST_DATA_PATH`. You should set this to the absolute path of the *chillax/tests/data* directory. 
 
