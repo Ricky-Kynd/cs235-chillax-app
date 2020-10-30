@@ -42,6 +42,10 @@ The *chillax/.env* file contains variable settings. They are set with appropriat
 
 ## Testing
 
+PLEASE NOTE: Please test individual testing files in the "tests/integration" and "tests/unit" folders by right clicking and running tests manually.
+
+BELOW MAY WORK
+--------------
 Testing requires that file *chillax/tests/conftest.py* be edited to set the value of `TEST_DATA_PATH`. You should set this to the absolute path of the *chillax/tests/data* directory. 
 
 E.g. `TEST_DATA_PATH = os.path.join('C:', os.sep, 'Users', 'ian', 'Documents', 'Python dev', 'COVID-19', 'tests', 'data')`

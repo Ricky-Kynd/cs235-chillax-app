@@ -49,7 +49,7 @@ def create_app(test_config=None):
                                         echo=database_echo)
 
         if app.config['TESTING'] == 'True' or len(database_engine.table_names()) == 0:
-            print("REPOPULATING DATABASE")
+            print("---REPOPULATING DATABASE---")
             # For testing, or first-time use of the web application, reinitialise the database.
             clear_mappers()
             metadata.create_all(database_engine)  # Conditionally create database tables.
